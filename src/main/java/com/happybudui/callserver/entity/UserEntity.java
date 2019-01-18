@@ -1,12 +1,14 @@
 package com.happybudui.callserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.Objects;
 
+@EntityScan
 public class UserEntity {
-    private BigInteger userNumber;
+    private BigDecimal userNumber;
 
     @JsonIgnore
     private String userPassword;
@@ -17,7 +19,7 @@ public class UserEntity {
     private double userLatitude;
 
 
-    public UserEntity(BigInteger userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
+    public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
         this.userNumber = userNumber;
         this.userPassword = userPassword;
         this.userStatus = userStatus;
@@ -26,11 +28,20 @@ public class UserEntity {
         this.userLatitude = userLatitude;
     }
 
-    public BigInteger getUserNumber() {
+    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
+        this.userNumber = new BigDecimal(String.valueOf(userNumber));
+        this.userPassword = userPassword;
+        this.userStatus = userStatus;
+        this.userScene = userScene;
+        this.userLongitude = userLongitude;
+        this.userLatitude = userLatitude;
+    }
+
+    public BigDecimal getUserNumber() {
         return userNumber;
     }
 
-    public void setUserNumber(BigInteger userNumber) {
+    public void setUserNumber(BigDecimal userNumber) {
         this.userNumber = userNumber;
     }
 
