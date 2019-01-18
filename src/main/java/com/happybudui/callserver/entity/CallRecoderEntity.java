@@ -1,5 +1,7 @@
 package com.happybudui.callserver.entity;
 
+import java.util.Objects;
+
 public class CallRecoderEntity {
     private int callRecordId;
     private long callFromNumber;
@@ -39,5 +41,35 @@ public class CallRecoderEntity {
 
     public void setCallLastedTime(int callLastedTime) {
         this.callLastedTime = callLastedTime;
+    }
+
+    @Override
+    public String toString() {
+        return "CallRecoderEntity{" +
+                "callRecordId=" + callRecordId +
+                ", callFromNumber=" + callFromNumber +
+                ", callToNumber=" + callToNumber +
+                ", callType=" + callType +
+                ", callStartTime=" + callStartTime +
+                ", callLastedTime=" + callLastedTime +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CallRecoderEntity that = (CallRecoderEntity) o;
+        return callRecordId == that.callRecordId &&
+                callFromNumber == that.callFromNumber &&
+                callToNumber == that.callToNumber &&
+                callType == that.callType &&
+                callStartTime == that.callStartTime &&
+                callLastedTime == that.callLastedTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(callRecordId, callFromNumber, callToNumber, callType, callStartTime, callLastedTime);
     }
 }
