@@ -1,17 +1,23 @@
 package com.happybudui.callserver.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.math.BigInteger;
 import java.util.Objects;
 
 public class UserEntity {
-    private long userNumber;
+    private BigInteger userNumber;
+
+    @JsonIgnore
     private String userPassword;
+
     private int userStatus;
     private int userScene;
     private double userLongitude;
     private double userLatitude;
 
 
-    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
+    public UserEntity(BigInteger userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
         this.userNumber = userNumber;
         this.userPassword = userPassword;
         this.userStatus = userStatus;
@@ -20,11 +26,11 @@ public class UserEntity {
         this.userLatitude = userLatitude;
     }
 
-    public long getUserNumber() {
+    public BigInteger getUserNumber() {
         return userNumber;
     }
 
-    public void setUserNumber(long userNumber) {
+    public void setUserNumber(BigInteger userNumber) {
         this.userNumber = userNumber;
     }
 
