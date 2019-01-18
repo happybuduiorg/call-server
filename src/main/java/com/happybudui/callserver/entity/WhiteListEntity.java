@@ -1,35 +1,36 @@
 package com.happybudui.callserver.entity;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class WhiteListEntity {
 
-    private long whiteUserNumber;
-    private long whiteAllowedNumber;
+    private BigDecimal whiteUserNumber;
+    private BigDecimal whiteAllowedNumber;
     private int whiteLevel;
 
     public WhiteListEntity() {
     }
 
-    public WhiteListEntity(long whiteUserNumber, long whiteAllowedNumber, int whiteLevel) {
+    public WhiteListEntity(BigDecimal whiteUserNumber, BigDecimal whiteAllowedNumber, int whiteLevel) {
         this.whiteUserNumber = whiteUserNumber;
         this.whiteAllowedNumber = whiteAllowedNumber;
         this.whiteLevel = whiteLevel;
     }
 
-    public long getWhiteUserNumber() {
+    public BigDecimal getWhiteUserNumber() {
         return whiteUserNumber;
     }
 
-    public void setWhiteUserNumber(long whiteUserNumber) {
+    public void setWhiteUserNumber(BigDecimal whiteUserNumber) {
         this.whiteUserNumber = whiteUserNumber;
     }
 
-    public long getWhiteAllowedNumber() {
+    public BigDecimal getWhiteAllowedNumber() {
         return whiteAllowedNumber;
     }
 
-    public void setWhiteAllowedNumber(long whiteAllowedNumber) {
+    public void setWhiteAllowedNumber(BigDecimal whiteAllowedNumber) {
         this.whiteAllowedNumber = whiteAllowedNumber;
     }
 
