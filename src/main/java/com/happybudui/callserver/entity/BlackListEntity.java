@@ -1,33 +1,34 @@
 package com.happybudui.callserver.entity;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class BlackListEntity {
 
-    private long blackUserNumber;
-    private long blackBannedNumber;
+    private BigDecimal blackUserNumber;
+    private BigDecimal blackBannedNumber;
 
     public BlackListEntity() {
     }
 
-    public BlackListEntity(long blackUserNumber, long blackBannedNumber) {
+    public BlackListEntity(BigDecimal blackUserNumber, BigDecimal blackBannedNumber) {
         this.blackUserNumber = blackUserNumber;
         this.blackBannedNumber = blackBannedNumber;
     }
 
-    public long getBlackUserNumber() {
+    public BigDecimal getBlackUserNumber() {
         return blackUserNumber;
     }
 
-    public void setBlackUserNumber(long blackUserNumber) {
+    public void setBlackUserNumber(BigDecimal blackUserNumber) {
         this.blackUserNumber = blackUserNumber;
     }
 
-    public long getBlackBannedNumber() {
+    public BigDecimal getBlackBannedNumber() {
         return blackBannedNumber;
     }
 
-    public void setBlackBannedNumber(long blackBannedNumber) {
+    public void setBlackBannedNumber(BigDecimal blackBannedNumber) {
         this.blackBannedNumber = blackBannedNumber;
     }
 
