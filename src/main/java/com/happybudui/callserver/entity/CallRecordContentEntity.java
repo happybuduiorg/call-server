@@ -5,25 +5,26 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import java.util.Objects;
 
 @EntityScan
-public class CallRecoderContentEntity {
-    private int callRecoderId;
+public class CallRecordContentEntity {
+    private int callRecordId;
     private int callIndex;
     private String callText;
     private String callAudio;
 
-    public CallRecoderContentEntity(int callRecoderId, int callIndex, String callText, String callAudio) {
-        this.callRecoderId = callRecoderId;
+    public CallRecordContentEntity(int callRecordId, int callIndex, String callText, String callAudio) {
+        this.callRecordId = callRecordId;
         this.callIndex = callIndex;
         this.callText = callText;
         this.callAudio = callAudio;
     }
 
-    public int getCallRecoderId() {
-        return callRecoderId;
+
+    public int getCallRecordId() {
+        return callRecordId;
     }
 
-    public void setCallRecoderId(int callRecoderId) {
-        this.callRecoderId = callRecoderId;
+    public void setCallRecordId(int callRecordId) {
+        this.callRecordId = callRecordId;
     }
 
     public int getCallIndex() {
@@ -52,8 +53,8 @@ public class CallRecoderContentEntity {
 
     @Override
     public String toString() {
-        return "CallRecoderContentEntity{" +
-                "callRecoderId=" + callRecoderId +
+        return "CallRecordContentEntity{" +
+                "callRecordId=" + callRecordId +
                 ", callIndex=" + callIndex +
                 ", callText='" + callText + '\'' +
                 ", callAudio='" + callAudio + '\'' +
@@ -64,8 +65,8 @@ public class CallRecoderContentEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CallRecoderContentEntity that = (CallRecoderContentEntity) o;
-        return callRecoderId == that.callRecoderId &&
+        CallRecordContentEntity that = (CallRecordContentEntity) o;
+        return callRecordId == that.callRecordId &&
                 callIndex == that.callIndex &&
                 Objects.equals(callText, that.callText) &&
                 Objects.equals(callAudio, that.callAudio);
@@ -73,6 +74,6 @@ public class CallRecoderContentEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(callRecoderId, callIndex, callText, callAudio);
+        return Objects.hash(callRecordId, callIndex, callText, callAudio);
     }
 }

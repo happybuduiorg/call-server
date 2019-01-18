@@ -1,21 +1,41 @@
 package com.happybudui.callserver.entity;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @EntityScan
-public class CallRecoderEntity {
+public class CallRecordEntity {
     private int callRecordId;
-    private long callFromNumber;
-    private long callToNumber;
+    private BigDecimal callFromNumber;
+    private BigDecimal callToNumber;
     private int callType;
     private Timestamp callStartTime;
     private int callLastedTime;
 
-    public CallRecoderEntity(int callRecordId, long callFromNumber, long callToNumber, int callType, Timestamp callStartTime, int callLastedTime) {
+    public CallRecordEntity(int callRecordId, BigDecimal callFromNumber, BigDecimal callToNumber, int callType, Timestamp callStartTime, int callLastedTime) {
         this.callRecordId = callRecordId;
+        this.callFromNumber = callFromNumber;
+        this.callToNumber = callToNumber;
+        this.callType = callType;
+        this.callStartTime = callStartTime;
+        this.callLastedTime = callLastedTime;
+    }
+
+    public CallRecordEntity(int callRecordId, long callFromNumber, long callToNumber, int callType, Timestamp callStartTime, int callLastedTime) {
+        this.callRecordId = callRecordId;
+        this.callFromNumber = new BigDecimal(String.valueOf(callFromNumber));
+        this.callToNumber = new BigDecimal(String.valueOf(callToNumber));
+        this.callType = callType;
+        this.callStartTime = callStartTime;
+        this.callLastedTime = callLastedTime;
+    }
+
+    public CallRecordEntity(BigDecimal callFromNumber, BigDecimal callToNumber, int callType, Timestamp callStartTime, int callLastedTime) {
         this.callFromNumber = callFromNumber;
         this.callToNumber = callToNumber;
         this.callType = callType;
@@ -31,19 +51,19 @@ public class CallRecoderEntity {
         this.callRecordId = callRecordId;
     }
 
-    public long getCallFromNumber() {
+    public BigDecimal getCallFromNumber() {
         return callFromNumber;
     }
 
-    public void setCallFromNumber(long callFromNumber) {
+    public void setCallFromNumber(BigDecimal callFromNumber) {
         this.callFromNumber = callFromNumber;
     }
 
-    public long getCallToNumber() {
+    public BigDecimal getCallToNumber() {
         return callToNumber;
     }
 
-    public void setCallToNumber(long callToNumber) {
+    public void setCallToNumber(BigDecimal callToNumber) {
         this.callToNumber = callToNumber;
     }
 
@@ -73,7 +93,7 @@ public class CallRecoderEntity {
 
     @Override
     public String toString() {
-        return "CallRecoderEntity{" +
+        return "CallRecordEntity{" +
                 "callRecordId=" + callRecordId +
                 ", callFromNumber=" + callFromNumber +
                 ", callToNumber=" + callToNumber +
@@ -87,12 +107,12 @@ public class CallRecoderEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CallRecoderEntity that = (CallRecoderEntity) o;
+        CallRecordEntity that = (CallRecordEntity) o;
         return callRecordId == that.callRecordId &&
-                callFromNumber == that.callFromNumber &&
-                callToNumber == that.callToNumber &&
                 callType == that.callType &&
                 callLastedTime == that.callLastedTime &&
+                Objects.equals(callFromNumber, that.callFromNumber) &&
+                Objects.equals(callToNumber, that.callToNumber) &&
                 Objects.equals(callStartTime, that.callStartTime);
     }
 

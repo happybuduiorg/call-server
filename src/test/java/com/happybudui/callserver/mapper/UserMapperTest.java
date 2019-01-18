@@ -1,6 +1,8 @@
 package com.happybudui.callserver.mapper;
 
 import com.happybudui.callserver.entity.UserEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
