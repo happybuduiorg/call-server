@@ -1,21 +1,29 @@
 package com.happybudui.callserver.entity;
 
+import com.happybudui.callserver.mapper.JunkPhoneMapper;
+
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class JunkPhoneEntity {
-    private long junkNumber;
+    private BigDecimal junkNumber;
     private int junkType;
 
-    public JunkPhoneEntity(long junkNumber, int junkType) {
+    public JunkPhoneEntity(BigDecimal junkNumber, int junkType) {
         this.junkNumber = junkNumber;
         this.junkType = junkType;
     }
 
-    public long getJunkNumber() {
+    public JunkPhoneEntity(long junkNumber, int junkType){
+        this.junkNumber = new BigDecimal(String.valueOf(junkNumber));
+        this.junkType = junkType;
+    }
+
+    public BigDecimal getJunkNumber() {
         return junkNumber;
     }
 
-    public void setJunkNumber(long junkNumber) {
+    public void setJunkNumber(BigDecimal junkNumber) {
         this.junkNumber = junkNumber;
     }
 

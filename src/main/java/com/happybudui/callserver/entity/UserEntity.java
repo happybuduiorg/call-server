@@ -17,7 +17,15 @@ public class UserEntity {
     private int userScene;
     private double userLongitude;
     private double userLatitude;
+    private String userToken;
 
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
+    }
 
     public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
         this.userNumber = userNumber;
