@@ -28,7 +28,7 @@ public class BlackListMapperTest {
     public BlackListMapper blackListMapper;
 
     @Test
-    //@Ignore
+    @Ignore
     public void test01InsertBlack() {
         int res1 = blackListMapper.insertBlack(new BlackListEntity(new BigDecimal("15618352031"), new BigDecimal("18918036180")));
         Assert.assertEquals(1, res1);
@@ -37,7 +37,7 @@ public class BlackListMapperTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     @Transactional
     public void test02GetBlackList() {
         List<BlackListEntity> blackList = blackListMapper.getBlackList(new BigDecimal("15618352031"));
@@ -46,6 +46,7 @@ public class BlackListMapperTest {
     }
 
     @Test
+    @Ignore
     public void test03DeleteBlack() {
         int res = blackListMapper.deleteBlack(new BigDecimal("15618352031"), new BigDecimal("18918036180"));
         Assert.assertEquals(1, res);
