@@ -12,37 +12,30 @@ public class UserEntity {
 
     @JsonIgnore
     private String userPassword;
-
     private int userStatus;
     private int userScene;
     private double userLongitude;
     private double userLatitude;
     private String userToken;
 
-    public String getUserToken() {
-        return userToken;
-    }
-
-    public void setUserToken(String userToken) {
-        this.userToken = userToken;
-    }
-
-    public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
+    public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude, String userToken) {
         this.userNumber = userNumber;
         this.userPassword = userPassword;
         this.userStatus = userStatus;
         this.userScene = userScene;
         this.userLongitude = userLongitude;
         this.userLatitude = userLatitude;
+        this.userToken = userToken;
     }
 
-    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
+    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude, String userToken) {
         this.userNumber = new BigDecimal(String.valueOf(userNumber));
         this.userPassword = userPassword;
         this.userStatus = userStatus;
         this.userScene = userScene;
         this.userLongitude = userLongitude;
         this.userLatitude = userLatitude;
+        this.userToken = userToken;
     }
 
     public BigDecimal getUserNumber() {
@@ -93,6 +86,14 @@ public class UserEntity {
         this.userLatitude = userLatitude;
     }
 
+    public String getUserToken() {
+        return userToken;
+    }
+
+    public void setUserToken(String userToken) {
+        this.userToken = userToken;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -102,6 +103,7 @@ public class UserEntity {
                 ", userScene=" + userScene +
                 ", userLongitude=" + userLongitude +
                 ", userLatitude=" + userLatitude +
+                ", userToken='" + userToken + '\'' +
                 '}';
     }
 
@@ -110,17 +112,17 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return userNumber == that.userNumber &&
-                userStatus == that.userStatus &&
+        return userStatus == that.userStatus &&
                 userScene == that.userScene &&
                 Double.compare(that.userLongitude, userLongitude) == 0 &&
                 Double.compare(that.userLatitude, userLatitude) == 0 &&
-                Objects.equals(userPassword, that.userPassword);
+                Objects.equals(userNumber, that.userNumber) &&
+                Objects.equals(userPassword, that.userPassword) &&
+                Objects.equals(userToken, that.userToken);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(userNumber, userPassword, userStatus, userScene, userLongitude, userLatitude);
+        return Objects.hash(userNumber, userPassword, userStatus, userScene, userLongitude, userLatitude, userToken);
     }
 }

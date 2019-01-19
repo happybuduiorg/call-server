@@ -4,21 +4,19 @@ import com.happybudui.callserver.entity.UserEntity;
 import com.happybudui.callserver.mapper.UserMapper;
 import com.happybudui.callserver.wrapper.ResponseResult;
 import com.happybudui.callserver.wrapper.ResultGenerator;
-import jdk.nashorn.internal.parser.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import redis.clients.jedis.Jedis;
-
-import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.Random;
 
 
 @Service
 public class UserService {
+
     private final UserMapper userMapper;
     private final RedisService redisService;
+
     @Autowired
     public UserService(UserMapper userMapper, RedisService redisService){
         this.userMapper = userMapper;
@@ -32,7 +30,7 @@ public class UserService {
         if(testuserEntity != null){
             return ResultGenerator.error("userNumber has existed.");
         }
-        UserEntity userEntity = new UserEntity(new BigDecimal(userNumber), userPassword, 0, 0, 0, 0);
+        UserEntity userEntity = new UserEntity(new BigDecimal(userNumber), userPassword, 0, 0, 0, 0, null);
         if(userMapper.insertUser(userEntity) == 1){
             return ResultGenerator.success("Register successfully!");
         } else{
@@ -59,6 +57,26 @@ public class UserService {
             return ResultGenerator.error("Wrong password!");
         }
     }
+
+    // 用户注销
+    @Transactional
+    public ResponseResult<Integer> Logout(UserEntity userEntity){
+        if(isLogin(userEntity).getData() == 1){
+            userEntity.setUserToken(null);
+            return ResultGenerator.success("Logout successfully!");
+        }
+        return ResultGenerator.error("Should login first!");
+    }
+
+    // 判断是否登录
+    @Transactional
+    public ResponseResult<Integer> isLogin(UserEntity userEntity){
+        if(userEntity.getUserToken() == null){
+            return ResultGenerator.success("false Login", 0);
+        }
+        return ResultGenerator.success("true Login", 1);
+    }
+
 
 
     //生成随机字符串
