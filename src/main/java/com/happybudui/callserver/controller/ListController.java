@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @Controller
 @RequestMapping("/list/")
 public class ListController {
