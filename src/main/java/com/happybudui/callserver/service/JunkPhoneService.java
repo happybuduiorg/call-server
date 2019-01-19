@@ -57,5 +57,28 @@ public class JunkPhoneService {
         return ResultGenerator.success("delete successfully!");
     }
 
+    //判断是否是骚扰电话checkIfJunk
+    public ResponseResult<Boolean> checkIfJunk(String junkNumber) {
+        JunkPhoneEntity junkPhoneEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
+        if (junkPhoneEntity == null)
+            return ResultGenerator.success(false);
+        else
+            return ResultGenerator.success(true);
+    }
+
+    //添加至骚扰电话名单addToJunkList
+    @Transactional
+    public ResponseResult<Integer> addToJunkList(String junkNumber, String junkType) {
+        JunkPhoneEntity junkUserEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
+        if (junkUserEntity != null) {
+            return ResultGenerator.error("Junk exists!");
+        }
+
+        if (junkPhoneMapper.insertJunkPhone(new JunkPhoneEntity(new BigDecimal(junkNumber), Integer.valueOf(junkType))) == 1) {
+            return ResultGenerator.success("Add junk successfully!");
+        } else {
+            return ResultGenerator.error("Add junk failed!");
+        }
+    }
 
 }

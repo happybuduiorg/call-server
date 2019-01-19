@@ -1,7 +1,6 @@
 package com.happybudui.callserver.service;
 
 import com.happybudui.callserver.entity.BlackListEntity;
-import com.happybudui.callserver.entity.JunkPhoneEntity;
 import com.happybudui.callserver.entity.UserEntity;
 import com.happybudui.callserver.entity.WhiteListEntity;
 import com.happybudui.callserver.mapper.BlackListMapper;
@@ -114,6 +113,13 @@ public class ListService {
             return ResultGenerator.error("Insert white failed!");
     }
 
+    // 更改白名单电话等级
+    @Transactional
+    public ResponseResult<Integer> changeWhiteLevel(String whiteUserNumber, String whiteAllowedNumber, String whiteLevel){
+        whiteListMapper.changeWhiteLevel(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber), Integer.parseInt(whiteLevel));
+        return ResultGenerator.success("change successfully!");
+    }
+
     //从黑名单中删除deleteFromBlackList
     @Transactional
     public ResponseResult<Integer> deleteFromBlackList(String blackUserNumber, String blackBannedNumber) {
@@ -150,27 +156,4 @@ public class ListService {
         return ResultGenerator.success("delete junk successfully!");
     }
 
-    //判断是否是骚扰电话checkIfJunk
-    public ResponseResult<Boolean> checkIfJunk(String junkNumber) {
-        JunkPhoneEntity junkPhoneEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
-        if (junkPhoneEntity == null)
-            return ResultGenerator.success(false);
-        else
-            return ResultGenerator.success(true);
-    }
-
-    //添加至骚扰电话名单addToJunkList
-    @Transactional
-    public ResponseResult<Integer> addToJunkList(String junkNumber, String junkType) {
-        JunkPhoneEntity junkUserEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
-        if (junkUserEntity != null) {
-            return ResultGenerator.error("Junk exists!");
-        }
-
-        if (junkPhoneMapper.insertJunkPhone(new JunkPhoneEntity(new BigDecimal(junkNumber), Integer.valueOf(junkType))) == 1) {
-            return ResultGenerator.success("Add junk successfully!");
-        } else {
-            return ResultGenerator.error("Add junk failed!");
-        }
-    }
 }

@@ -51,6 +51,14 @@ public class ListController {
         return listService.deleteFromWhiteList(whiteUserNumber,whiteAllowedNumber);
     }
 
+    //更改白名单电话等级
+    @RequestMapping(value = "changewhitelevel",method = RequestMethod.POST)
+    ResponseResult<Integer>changeWhiteLevel(@RequestParam(name="whiteusernumber")String whiteUserNumber,
+                                            @RequestParam(name="whiteallowednumber")String whiteAllowedNumber,
+                                            @RequestParam(name="whitelevel")String whiteLevel) {
+        return listService.changeWhiteLevel(whiteUserNumber,whiteAllowedNumber,whiteLevel);
+    }
+
     //加入黑名单
     @RequestMapping(value = "addtoblacklist",method = RequestMethod.POST)
     ResponseResult<Integer>addToBlackList(@RequestParam(name="blackusernumber")String blackUserNumber,
