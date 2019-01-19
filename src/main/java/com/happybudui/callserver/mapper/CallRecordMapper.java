@@ -23,14 +23,14 @@ public interface CallRecordMapper {
     @Select("select * from callrecord where callfromnumber=#{callFromNumber} and calltonumber = #{callToNumber}")
     CallRecordEntity getCallRecordByFromNumAndToNum(@Param("callFromNumber")BigDecimal callFromNum,@Param("callToNumber")BigDecimal callToNum);
 
-    @Select("select * from callrecord where callfromnum =#{callFromNumber}")
+    @Select("select * from callrecord where callfromnumber =#{callFromNumber}")
     List<CallRecordEntity>  getCallRecordsByFromNumber(@Param("callFromNumber")BigDecimal callFromNumber);
 
-    @Select("select * from callrecord where calltonum =#{callToNumber}")
+    @Select("select * from callrecord where calltonumber =#{callToNumber}")
     List<CallRecordEntity>  getCallRecordsByToNumber(@Param("callToNumber")BigDecimal callToNumber);
 
-    @Select("select * from callrecord where calltonum =#{callToNumber} and callstarttime>#{callStartTime}")
-    List<CallRecordEntity>  getCallRecordsByToNumberAndStartTime(@Param("callToNumber")BigDecimal callToNumber,@Param("callStartTime")String startTime);
+    @Select("select * from callrecord where calltonumber =#{callToNumber} and callstarttime>#{callStartTime}")
+    List<CallRecordEntity>  getCallRecordsByToNumberAndStartTime(@Param("callToNumber")BigDecimal callToNumber,@Param("callStartTime")Timestamp startTime);
 
     @Update("update callrecord set calltype =#{callType} where callrecordid =#{callRecordId}")
     Integer updateCallType(@Param("callRecordId")Integer callRecordId,@Param("callType")Integer callType);
@@ -41,8 +41,8 @@ public interface CallRecordMapper {
     @Update("update callrecord set calllastedtime =#{callLastedTime} where callrecordid =#{callRecordId}")
     Integer updateCallLastedTime(@Param("callRecordId")Integer callRecordId,@Param("callLastedTime")int callLastedTime);
 
-    @Insert("insert into callrecordcontent(calltext,callaudio) " +
-            "values(#{callText},#{callAudio})")
+    @Insert("insert into callrecordcontent(callrecordid,calltext,callaudio) " +
+            "values(#{callRecordId},#{callText},#{callAudio})")
     Integer insertCallRecordContent(CallRecordContentEntity callRecordContentEntity);
 
     @Select("select * from callrecordcontent where callrecordid =#{callRecordId}")

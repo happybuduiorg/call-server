@@ -63,7 +63,7 @@ public class CallService {
     //查询自己的接听的通话记录
     ResponseResult<List<CallRecordEntity>> getCallRecord(String callNumber,String startTime){
         Timestamp callStartTime=new Timestamp(Long.valueOf(startTime));
-        List<CallRecordEntity> callRecordEntities=callRecordMapper.getCallRecordsByToNumberAndStartTime(new BigDecimal(callNumber),callStartTime.toString());
+        List<CallRecordEntity> callRecordEntities=callRecordMapper.getCallRecordsByToNumberAndStartTime(new BigDecimal(callNumber),callStartTime);
         return ResultGenerator.success(callRecordEntities);
     }
 
@@ -78,7 +78,7 @@ public class CallService {
         }else{
             for(Object object:jsonObjectList){
                 JSONObject jsonObj=(JSONObject)object;
-                int callRecordIndex=jsonObj.getInt("callRecordIndex");
+                int callRecordIndex=jsonObj.getInt("callIndex");
                 String callText=jsonObj.getString("callText");
                 String callAudio=jsonObj.getString("callAudio");
                 callRecordMapper.insertCallRecordContent(new CallRecordContentEntity(recordId,callRecordIndex,callText,callAudio));

@@ -29,7 +29,7 @@ public class UserService {
         if(testuserEntity != null){
             return ResultGenerator.error("userNumber has existed.");
         }
-        UserEntity userEntity = new UserEntity(new BigDecimal(userNumber), userPassword, 0, 0, 0, 0, null);
+        UserEntity userEntity = new UserEntity(new BigDecimal(userNumber), userPassword, 0, 0, 0, 0);
         if(userMapper.insertUser(userEntity) == 1){
             return ResultGenerator.success("Register successfully!");
         } else{
@@ -50,6 +50,7 @@ public class UserService {
             }
             String userToken = getRandomString(16);
             redisService.set(userToken, userNumber);
+            redisService.setValidTime(userToken, 3600*24*2);
             userEntity.setUserToken(userToken);
             return ResultGenerator.success(userEntity);
         } else{
@@ -59,9 +60,9 @@ public class UserService {
 
     // 用户注销
     @Transactional
-    public ResponseResult<Integer> Logout(UserEntity userEntity){
-        if(isLogin(userEntity).getData() == 1){
-            userEntity.setUserToken(null);
+    public ResponseResult<Integer> Logout(String userToken){
+        if(userToken != ""){
+            redisService.set(userToken, "");
             return ResultGenerator.success("Logout successfully!");
         }
         return ResultGenerator.error("Should login first!");
@@ -69,11 +70,11 @@ public class UserService {
 
     // 判断是否登录
     @Transactional
-    public ResponseResult<Integer> isLogin(UserEntity userEntity){
-        if(userEntity.getUserToken() == null){
-            return ResultGenerator.success("false Login", 0);
+    public ResponseResult<Integer> isLogin(String userToken){
+        if(redisService.get(userToken).equals("")){
+            return ResultGenerator.success("false Login", new Integer(0));
         }
-        return ResultGenerator.success("true Login", 1);
+        return ResultGenerator.success("true Login", new Integer(1));
     }
 
 

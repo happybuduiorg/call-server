@@ -15,6 +15,9 @@ public class CallRecordEntity {
     private Timestamp callStartTime;
     private int callLastedTime;
 
+    public CallRecordEntity() {
+    }
+
     public CallRecordEntity(int callRecordId, BigDecimal callFromNumber, BigDecimal callToNumber, int callType, Timestamp callStartTime, int callLastedTime) {
         this.callRecordId = callRecordId;
         this.callFromNumber = callFromNumber;

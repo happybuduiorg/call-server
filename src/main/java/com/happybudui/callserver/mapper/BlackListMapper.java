@@ -20,6 +20,9 @@ public interface BlackListMapper {
     Integer deleteBlack(@Param("blackUserNumber") BigDecimal blackUserNumber, @Param("blackBannedNumber") BigDecimal blackBannedNumber);
 
     //查
+    @Select("select * from blacklist where blackusernumber =#{blackUserNumber} and blackbannednumber =#{blackBannedNumber}")
+    BlackListEntity getBlack(@Param("blackUserNumber") BigDecimal blackUserNumber, @Param("blackBannedNumber") BigDecimal blackBannedNumber);
+
     @Select("select * from blacklist where blackusernumber =#{blackUserNumber}")
     List<BlackListEntity> getBlackList(@Param("blackUserNumber") BigDecimal blackUserNumber);
 }

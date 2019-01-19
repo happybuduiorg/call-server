@@ -1,9 +1,11 @@
 package com.happybudui.callserver.service;
 
 import com.happybudui.callserver.entity.BlackListEntity;
+import com.happybudui.callserver.entity.JunkPhoneEntity;
 import com.happybudui.callserver.entity.UserEntity;
 import com.happybudui.callserver.entity.WhiteListEntity;
 import com.happybudui.callserver.mapper.BlackListMapper;
+import com.happybudui.callserver.mapper.JunkPhoneMapper;
 import com.happybudui.callserver.mapper.UserMapper;
 import com.happybudui.callserver.mapper.WhiteListMapper;
 import com.happybudui.callserver.wrapper.ResponseResult;
@@ -21,12 +23,14 @@ public class ListService {
     private final UserMapper userMapper;
     private final WhiteListMapper whiteListMapper;
     private final BlackListMapper blackListMapper;
+    private final JunkPhoneMapper junkPhoneMapper;
 
     @Autowired
-    public ListService(UserMapper userMapper, WhiteListMapper whiteListMapper, BlackListMapper blackListMapper) {
+    public ListService(UserMapper userMapper, WhiteListMapper whiteListMapper, BlackListMapper blackListMapper, JunkPhoneMapper junkPhoneMapper) {
         this.userMapper = userMapper;
         this.whiteListMapper = whiteListMapper;
         this.blackListMapper = blackListMapper;
+        this.junkPhoneMapper = junkPhoneMapper;
     }
 
     //获取所有个人的黑名单getAllBlackList
@@ -73,6 +77,10 @@ public class ListService {
             return ResultGenerator.error("User has been frozen!");
         }
 
+        BlackListEntity blackListEntity = blackListMapper.getBlack(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
+        if (blackListEntity != null)
+            return ResultGenerator.error("Black exists!");
+
         int res = blackListMapper.insertBlack(new BlackListEntity(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber)));
         if (res == 1)
             return ResultGenerator.success("Insert black successfully!");
@@ -92,6 +100,10 @@ public class ListService {
             return ResultGenerator.error("User has been frozen!");
         }
 
+        WhiteListEntity whiteListEntity = whiteListMapper.getWhite(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
+        if (whiteListEntity != null)
+            return ResultGenerator.error("White exists!");
+
         int res = whiteListMapper.insertWhite(new WhiteListEntity(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber), Integer.valueOf(whiteLevel)));
         if (res == 1)
             return ResultGenerator.success("Insert white successfully!");
@@ -102,7 +114,11 @@ public class ListService {
     //从黑名单中删除deleteFromBlackList
     @Transactional
     public ResponseResult<Integer> deleteFromBlackList(String blackUserNumber, String blackBannedNumber) {
-        int res = whiteListMapper.deleteWhite(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
+        BlackListEntity blackListEntity = blackListMapper.getBlack(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
+        if (blackListEntity == null)
+            return ResultGenerator.error("Black doesn't exist!");
+
+        int res = blackListMapper.deleteBlack(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
         if (res == 1)
             return ResultGenerator.success("Delete black successfully!");
         else
@@ -112,10 +128,39 @@ public class ListService {
     //从白名单中删除deleteFromWhiteList
     @Transactional
     public ResponseResult<Integer> deleteFromWhiteList(String whiteUserNumber, String whiteAllowedNumber) {
-        int res = blackListMapper.deleteBlack(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
+        WhiteListEntity whiteListEntity = whiteListMapper.getWhite(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
+        if (whiteListEntity == null)
+            return ResultGenerator.error("White doesn't exist!");
+
+
+        int res = whiteListMapper.deleteWhite(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
         if (res == 1)
             return ResultGenerator.success("Delete white successfully!");
         else
             return ResultGenerator.error("Delete white failed!");
+    }
+
+    //判断是否是骚扰电话checkIfJunk
+    public ResponseResult<Boolean> checkIfJunk(String junkNumber) {
+        JunkPhoneEntity junkPhoneEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
+        if (junkPhoneEntity == null)
+            return ResultGenerator.success(false);
+        else
+            return ResultGenerator.success(true);
+    }
+
+    //添加至骚扰电话名单addToJunkList
+    @Transactional
+    public ResponseResult<Integer> addToJunkList(String junkNumber, String junkType) {
+        JunkPhoneEntity junkUserEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
+        if (junkUserEntity != null) {
+            return ResultGenerator.error("Junk exists!");
+        }
+
+        if (junkPhoneMapper.insertJunkPhone(new JunkPhoneEntity(new BigDecimal(junkNumber), Integer.valueOf(junkType))) == 1) {
+            return ResultGenerator.success("Add junk successfully!");
+        } else {
+            return ResultGenerator.error("Add junk failed!");
+        }
     }
 }

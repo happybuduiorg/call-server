@@ -18,24 +18,22 @@ public class UserEntity {
     private double userLatitude;
     private String userToken;
 
-    public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude, String userToken) {
+    public UserEntity(BigDecimal userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
         this.userNumber = userNumber;
         this.userPassword = userPassword;
         this.userStatus = userStatus;
         this.userScene = userScene;
         this.userLongitude = userLongitude;
         this.userLatitude = userLatitude;
-        this.userToken = userToken;
     }
 
-    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude, String userToken) {
+    public UserEntity(long userNumber, String userPassword, int userStatus, int userScene, double userLongitude, double userLatitude) {
         this.userNumber = new BigDecimal(String.valueOf(userNumber));
         this.userPassword = userPassword;
         this.userStatus = userStatus;
         this.userScene = userScene;
         this.userLongitude = userLongitude;
         this.userLatitude = userLatitude;
-        this.userToken = userToken;
     }
 
     public BigDecimal getUserNumber() {
@@ -123,6 +121,7 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(userNumber, userPassword, userStatus, userScene, userLongitude, userLatitude, userToken);
     }
 }

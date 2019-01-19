@@ -18,5 +18,6 @@ public class RedisServiceTest {
     public void testRedisSet(){
         redisService.set("wanghao", "123");
         Assert.assertEquals("123", redisService.get("wanghao"));
+        System.out.println(redisService.get("ODmiQxRu7VjMl1wF"));
     }
 }
