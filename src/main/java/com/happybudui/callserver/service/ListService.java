@@ -73,8 +73,11 @@ public class ListService {
             return ResultGenerator.error("User has been frozen!");
         }
 
-        blackListMapper.insertBlack(new BlackListEntity(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber)));
-        return ResultGenerator.success("Insert black successfully!");
+        int res = blackListMapper.insertBlack(new BlackListEntity(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber)));
+        if (res == 1)
+            return ResultGenerator.success("Insert black successfully!");
+        else
+            return ResultGenerator.error("Insert black failed!");
     }
 
     //添加号码至白名单addToWhiteList
@@ -89,21 +92,29 @@ public class ListService {
             return ResultGenerator.error("User has been frozen!");
         }
 
-        whiteListMapper.insertWhite(new WhiteListEntity(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber), Integer.valueOf(whiteLevel)));
-        return ResultGenerator.success("Insert white successfully!");
+        int res = whiteListMapper.insertWhite(new WhiteListEntity(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber), Integer.valueOf(whiteLevel)));
+        if (res == 1)
+            return ResultGenerator.success("Insert white successfully!");
+        else
+            return ResultGenerator.error("Insert white failed!");
     }
 
     //从黑名单中删除deleteFromBlackList
     @Transactional
     public ResponseResult<Integer> deleteFromBlackList(String blackUserNumber, String blackBannedNumber) {
-        whiteListMapper.deleteWhite(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
-        return ResultGenerator.success("delete successfully!");
+        int res = whiteListMapper.deleteWhite(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
+        if (res == 1)
+            return ResultGenerator.success("Delete black successfully!");
+        else ResultGenerator.error("Delete black failed!");
     }
 
     //从白名单中删除deleteFromWhiteList
     @Transactional
     public ResponseResult<Integer> deleteFromWhiteList(String whiteUserNumber, String whiteAllowedNumber) {
-        blackListMapper.deleteBlack(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
-        return ResultGenerator.success("delete successfully!");
+        int res = blackListMapper.deleteBlack(new BigDecimal(whiteUserNumber), new BigDecimal(whiteAllowedNumber));
+        if (res == 1)
+            return ResultGenerator.success("Delete white successfully!");
+        else
+            return ResultGenerator.error("Delete white failed!");
     }
 }
