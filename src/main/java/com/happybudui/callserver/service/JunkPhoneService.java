@@ -47,7 +47,7 @@ public class JunkPhoneService {
         return ResultGenerator.success("update successfully!");
     }
 
-    // 更改指定骚扰电话类型
+    // 删除骚扰电话
     @Transactional
     public ResponseResult<Integer> deleteJunkPhoneNumber(String junkPhoneNumber){
         junkPhoneMapper.deleteJunkPhoneByNumber(new BigDecimal(junkPhoneNumber));
