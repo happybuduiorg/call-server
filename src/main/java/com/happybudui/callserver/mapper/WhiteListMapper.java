@@ -13,15 +13,15 @@ public interface WhiteListMapper {
     //增
     @Insert("insert into whitelist(whiteusernumber, whiteallowednumber, whitelevel) values" +
             "(#{whiteUserNumber},#{whiteAllowedNumber},#{whiteLevel})")
-    int insertWhite(WhiteListEntity whiteListEntity);
+    Integer insertWhite(WhiteListEntity whiteListEntity);
 
     //删
     @Delete("delete from whitelist where whiteusernumber =#{whiteUserNumber} and whiteallowednumber =#{whiteAllowedNumber}")
-    int deleteWhite(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber);
+    Integer deleteWhite(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber);
 
     //改
     @Update("update whitelist set whitelevel = #{whiteLevel} where whiteusernumber =#{whiteUserNumber} and whiteallowednumber =#{whiteAllowedNumber}")
-    int changeWhiteLevel(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber, @Param("whiteLevel") int whiteLevel);
+    Integer changeWhiteLevel(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber, @Param("whiteLevel") int whiteLevel);
 
     //查
     @Select("select * from whitelist where whiteusernumber =#{whiteUserNumber}")

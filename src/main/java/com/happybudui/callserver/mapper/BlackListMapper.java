@@ -13,11 +13,11 @@ public interface BlackListMapper {
     //增
     @Insert("insert into blacklist(blackusernumber, blackbannednumber) values" +
             "(#{blackUserNumber},#{blackBannedNumber})")
-    int insertBlack(BlackListEntity blackListEntity);
+    Integer insertBlack(BlackListEntity blackListEntity);
 
     //删
     @Delete("delete from blacklist where blackusernumber =#{blackUserNumber} and blackbannednumber =#{blackBannedNumber}")
-    int deleteBlack(@Param("blackUserNumber") BigDecimal blackUserNumber, @Param("blackBannedNumber") BigDecimal blackBannedNumber);
+    Integer deleteBlack(@Param("blackUserNumber") BigDecimal blackUserNumber, @Param("blackBannedNumber") BigDecimal blackBannedNumber);
 
     //查
     @Select("select * from blacklist where blackusernumber =#{blackUserNumber}")
