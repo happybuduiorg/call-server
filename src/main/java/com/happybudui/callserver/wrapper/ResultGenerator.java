@@ -1,5 +1,8 @@
 package com.happybudui.callserver.wrapper;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 /**
  * 用于构造ResponseResult
  * @author HappyBudui

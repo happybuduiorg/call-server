@@ -10,6 +10,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @Mapper
 public interface CallRecordMapper {
 

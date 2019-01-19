@@ -1,9 +1,10 @@
 package com.happybudui.callserver.entity;
 
-import com.happybudui.callserver.mapper.JunkPhoneMapper;
-
 import java.math.BigDecimal;
 import java.util.Objects;
+
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
 
 public class JunkPhoneEntity {
     private BigDecimal junkNumber;

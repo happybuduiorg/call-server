@@ -6,6 +6,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @EntityScan
 public class CallRecordEntity {
     private int callRecordId;

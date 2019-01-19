@@ -17,6 +17,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @Service
 public class ListService {
 

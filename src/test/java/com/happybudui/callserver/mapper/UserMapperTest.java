@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserMapperTest {

@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @RestController
 @RequestMapping("/junk/")
 public class JunkPhoneController {

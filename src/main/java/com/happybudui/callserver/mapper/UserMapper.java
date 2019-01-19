@@ -5,6 +5,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.math.BigDecimal;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @Mapper
 public interface UserMapper {
 

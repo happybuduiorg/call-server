@@ -2,13 +2,11 @@ package com.happybudui.callserver.mapper;
 
 import com.happybudui.callserver.entity.JunkPhoneEntity;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,6 +14,9 @@ import java.util.List;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasItems;
+
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

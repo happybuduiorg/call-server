@@ -4,6 +4,9 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.util.Objects;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @EntityScan
 public class CallRecordContentEntity {
     private int callRecordId;

@@ -3,6 +3,9 @@ package com.happybudui.callserver.entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 public class WhiteListEntity {
 
     private BigDecimal whiteUserNumber;

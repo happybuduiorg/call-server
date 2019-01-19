@@ -17,6 +17,9 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {

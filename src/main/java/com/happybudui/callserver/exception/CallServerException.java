@@ -1,5 +1,8 @@
 package com.happybudui.callserver.exception;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 /**
  * Exception defined for CallServer
  * @author HappyBudui

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Objects;
 
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
+
 /**
  * 返回的Response消息
  * @author HappyBudui

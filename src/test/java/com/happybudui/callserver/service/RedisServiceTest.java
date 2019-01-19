@@ -6,7 +6,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
+
+//CopyRight © 2018-2018 Happybudui All Rights Reserved.
+//Written by Happybudui
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
