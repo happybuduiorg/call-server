@@ -143,6 +143,13 @@ public class ListService {
             return ResultGenerator.error("Delete white failed!");
     }
 
+    //从骚扰电话名单中删除deleteFromJunkList
+    @Transactional
+    public ResponseResult<Integer> deleteFromJunkList(String junkUserNumber) {
+        junkPhoneMapper.deleteJunkPhoneByNumber(new BigDecimal(junkUserNumber));
+        return ResultGenerator.success("delete junk successfully!");
+    }
+
     //判断是否是骚扰电话checkIfJunk
     public ResponseResult<Boolean> checkIfJunk(String junkNumber) {
         JunkPhoneEntity junkPhoneEntity = junkPhoneMapper.getJunkPhoneByNumber(new BigDecimal(junkNumber));
