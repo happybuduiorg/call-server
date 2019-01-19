@@ -1,11 +1,10 @@
 package com.happybudui.callserver.mapper;
 
+import com.happybudui.callserver.entity.CallRecordContentEntity;
 import com.happybudui.callserver.entity.CallRecordEntity;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -30,6 +29,9 @@ public interface CallRecordMapper {
     @Select("select * from callrecord where calltonum =#{callToNumber}")
     List<CallRecordEntity>  getCallRecordsByToNumber(@Param("callToNumber")BigDecimal callToNumber);
 
+    @Select("select * from callrecord where calltonum =#{callToNumber} and callstarttime>#{callStartTime}")
+    List<CallRecordEntity>  getCallRecordsByToNumberAndStartTime(@Param("callToNumber")BigDecimal callToNumber,@Param("callStartTime")String startTime);
+
     @Update("update callrecord set calltype =#{callType} where callrecordid =#{callRecordId}")
     Integer updateCallType(@Param("callRecordId")Integer callRecordId,@Param("callType")Integer callType);
 
@@ -38,5 +40,18 @@ public interface CallRecordMapper {
 
     @Update("update callrecord set calllastedtime =#{callLastedTime} where callrecordid =#{callRecordId}")
     Integer updateCallLastedTime(@Param("callRecordId")Integer callRecordId,@Param("callLastedTime")int callLastedTime);
+
+    @Insert("insert into callrecordcontent(calltext,callaudio) " +
+            "values(#{callText},#{callAudio})")
+    Integer insertCallRecordContent(CallRecordContentEntity callRecordContentEntity);
+
+    @Select("select * from callrecordcontent where callrecordid =#{callRecordId}")
+    List<CallRecordContentEntity> getCallRecordContentById(@Param("callRecordId") int callRecordId);
+
+    @Update("update callrecordcontent set calltext =#{callText} where callrecordid =#{callRecordId}")
+    Integer updateCallText(@Param("callText")String callText, @Param("callRecordId")int callRecordId);
+
+    @Update("update callrecordcontent set callaudio =#{callAudio} where callrecordid =#{callRecordId}")
+    Integer updateCallAudio(@Param("callAudio")String callAudio, @Param("callRecordId")int callRecordId);
 
 }

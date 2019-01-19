@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Random;
 
-
 @Service
 public class UserService {
 
@@ -76,7 +75,6 @@ public class UserService {
         }
         return ResultGenerator.success("true Login", 1);
     }
-
 
 
     //生成随机字符串

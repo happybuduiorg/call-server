@@ -1,8 +1,6 @@
 package com.happybudui.callserver.entity;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
