@@ -105,7 +105,8 @@ public class ListService {
         int res = whiteListMapper.deleteWhite(new BigDecimal(blackUserNumber), new BigDecimal(blackBannedNumber));
         if (res == 1)
             return ResultGenerator.success("Delete black successfully!");
-        else ResultGenerator.error("Delete black failed!");
+        else
+            return ResultGenerator.error("Delete black failed!");
     }
 
     //从白名单中删除deleteFromWhiteList
