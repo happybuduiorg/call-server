@@ -24,6 +24,9 @@ public interface WhiteListMapper {
     Integer changeWhiteLevel(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber, @Param("whiteLevel") int whiteLevel);
 
     //查
+    @Select("select * from whitelist where whiteusernumber =#{whiteUserNumber} and whiteallowednumber =#{whiteAllowedNumber}")
+    WhiteListEntity getWhite(@Param("whiteUserNumber") BigDecimal whiteUserNumber, @Param("whiteAllowedNumber") BigDecimal whiteAllowedNumber);
+
     @Select("select * from whitelist where whiteusernumber =#{whiteUserNumber}")
     List<WhiteListEntity> getWhiteList(@Param("whiteUserNumber") BigDecimal whiteUserNumber);
 }
